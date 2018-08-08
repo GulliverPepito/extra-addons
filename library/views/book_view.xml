@@ -7,7 +7,7 @@
         <field name="arch" type="xml">
             <form string="Form Book">
                 <sheet>
-                    <field name="image"></field>
+                    <field name="image" widget="image"></field>
                     <group>
                         <field name="name"></field>
                         <field name="active"></field>
