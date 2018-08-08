@@ -10,3 +10,4 @@ class LibraryBook(models.Model):
     image = fields.Binary()
     pages = fields.Integer(string="# Pages")
     isbn = fields.Char(string="ISBN", size=13)
+    description = fields.Html(string="Description")

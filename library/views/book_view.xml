@@ -14,6 +14,9 @@
                         <field name="pages"></field>
                         <field name="isbn"></field>
                     </group>
+                    <group>
+                        <field name="description"></field>
+                    </group>
                 </sheet>
             </form>
         </field>
