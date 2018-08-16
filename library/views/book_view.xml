@@ -37,7 +37,7 @@
 
     <!-- Action book -->
     <record id="action_library_book" model="ir.actions.act_window">
-        <field name="name">action.library.book</field>
+        <field name="name">Book</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">library.book</field>
         <field name="view_mode">tree,form</field>
