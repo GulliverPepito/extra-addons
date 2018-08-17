@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 from odoo import http
 
-# class Extra-addons/saldoapp(http.Controller):
-#     @http.route('/extra-addons/saldoapp/extra-addons/saldoapp/', auth='public')
-#     def index(self, **kw):
-#         return "Hello, world"
+class Saldoapp(http.Controller):
+
+    @http.route('/saldoapp/saldoapp/', auth='public')
+    def index(self, **kw):
+        return "<h1>Hello, world</h1>"
 
 #     @http.route('/extra-addons/saldoapp/extra-addons/saldoapp/objects/', auth='public')
 #     def list(self, **kw):

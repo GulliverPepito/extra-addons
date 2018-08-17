@@ -1,0 +1,22 @@
+<odoo>
+    <data noupdate="0">
+        <!-- Cada vez que actualizemos el modulo se va a registrar estos dato en al db -->
+        <!-- noupdate es para que no se actualice, osea si esta en "0" y modifico alguna linea -->
+        <!-- ppor ejemplo monto, este no hace efecto en la db, si esta en "1" si se acrualziae en al db -->
+        <record id="movimiento_1" model="sa.movimiento">
+            <field name="name">Salida de amigos</field>
+            <field name="tipo">G</field>
+            <field name="monto">105</field>
+        </record>
+        <record id="movimiento_2" model="sa.movimiento">
+            <field name="name">Ingreso por Trabajo</field>
+            <field name="tipo">I</field>
+            <field name="monto">1500</field>
+        </record>
+        <record id="movimiento_3" model="sa.movimiento">
+            <field name="name">Salida con Tirza</field>
+            <field name="tipo">G</field>
+            <field name="monto">150</field>
+        </record>
+    </data>
+</odoo>

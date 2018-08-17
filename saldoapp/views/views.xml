@@ -1,6 +1,51 @@
 <odoo>
   <data>
-    <!-- explicit list view definition -->
+      <!-- 1° : Cree esta vista, luego del modelo -->
+      <record id="saldoapp.view_tree_movimiento" model="ir.ui.view">
+          <field name="name">view.tree.movimiento</field>
+          <field name="model">sa.movimiento</field>
+          <field name="arch" type="xml">
+              <tree>
+                  <field name="name"/>
+                  <field name="monto"/>
+                  <field name="tipo"/>
+                  <field name="fecha"/>
+              </tree>
+          </field>
+      </record>
+      <!-- 5° : Cree esta vista de tipo formulario -->
+      <record id="saldoapp.view_form_movimiento" model="ir.ui.view">
+          <field name="name">view.form.movimiento</field>
+          <field name="model">sa.movimiento</field>
+          <field name="arch" type="xml">
+              <form>
+                  <sheet>
+                      <group>
+                          <field name="monto"/>
+                          <field name="name"/>
+                          <field name="tipo"/>
+                          <field name="fecha"/>
+                      </group>
+                      <group>
+                          <field name="comprobante" widget="image"/>
+                      </group>
+                  </sheet>
+              </form>
+          </field>
+      </record>
+      <!-- 2° : Cree el action, para disparar la vista -->
+      <record id="saldoapp.action_movimiento" model="ir.actions.act_window">
+          <!-- Este action es el que le dara el nombre a la vista-->
+          <field name="name">Lista de Movimientos</field>
+          <field name="res_model">sa.movimiento</field>
+          <field name="view_mode">tree,form</field>
+      </record>
+
+      <!-- 4° : Cree este menu como menu principal, para hacerlo mas amigable sera el padre por tanto no tendra action-->
+      <menuitem id="saldoapp.menu_principal_saldoapp" name="Saldo App" parent=""/>
+      <!-- 3° : Cree el menu para el action (Con solo este menuitem sale sin el menu lateral izquierdo (parent vacio)) -->
+      <menuitem id="saldoapp.menu_movimiento" name="Movimiento" parent="saldoapp.menu_principal_saldoapp" action="saldoapp.action_movimiento"/>
+
     <!--
     <record model="ir.ui.view" id="extra-addons/saldoapp.list">
       <field name="name">extra-addons/saldoapp list</field>
@@ -13,7 +58,7 @@
         </tree>
       </field>
     </record>
-    -->
+  -->
 
     <!-- actions opening views on models -->
     <!--
