@@ -10,6 +10,8 @@ class Movimiento(models.Model):
     tipo = fields.Selection(selection=[("I","Ingreso"),("G","Gasto")])
     fecha = fields.Date(string="Fecha")
     comprobante = fields.Binary(string="Imagen de Comprobante")
+    resumen = fields.Html(string="Resumen")
+
 
 # class extra-addons/saldoapp(models.Model):
 #     _name = 'extra-addons/saldoapp.extra-addons/saldoapp'

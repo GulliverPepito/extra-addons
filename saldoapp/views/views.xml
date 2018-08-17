@@ -20,20 +20,22 @@
           <field name="arch" type="xml">
               <form>
                   <sheet>
-                      <group>
-                          <field name="monto"/>
+                      <group string="Campos Principales">
                           <field name="name"/>
-                          <field name="tipo"/>
+                          <field name="monto"/>
+                          <!-- <field name="tipo"/> asi es un "combo normal cambiamos la presentacion con radio" -->
+                          <field name="tipo" widget="radio"/>
                           <field name="fecha"/>
                       </group>
-                      <group>
+                      <group string="Otro Campos">
                           <field name="comprobante" widget="image"/>
+                          <field name="resumen"/>
                       </group>
                   </sheet>
               </form>
           </field>
       </record>
-      <!-- 2° : Cree el action, para disparar la vista -->
+      <!-- 2° : Cree el action, para disparar la vista de movimientos en general (ingreso y gasto)-->
       <record id="saldoapp.action_movimiento" model="ir.actions.act_window">
           <!-- Este action es el que le dara el nombre a la vista-->
           <field name="name">Lista de Movimientos</field>
@@ -41,12 +43,38 @@
           <field name="view_mode">tree,form</field>
       </record>
 
+
+      <!-- 5° : Cree el action para movimientos de tipo ingreso-->
+      <record id="saldoapp.action_movimiento_ingreso" model="ir.actions.act_window">
+          <field name="name">Ingresos</field>
+          <field name="res_model">sa.movimiento</field>
+          <field name="view_mode">tree,form</field>
+          <!-- context: es un diccionario -->
+          <field name="context">{"default_tipo":"I"}</field>
+          <!-- domain: es un arreglo -->
+          <field name="domain">[("tipo","=","I")]</field>
+      </record>
+      <!-- 6° : Cree el action para movimientos de tipo gasto-->
+      <record id="saldoapp.action_movimiento_gasto" model="ir.actions.act_window">
+          <field name="name">Gastos</field>
+          <field name="res_model">sa.movimiento</field>
+          <field name="view_mode">tree,form</field>
+          <!-- context: es un diccionario -->
+          <field name="context">{"default_tipo":"G"}</field>
+          <!-- domain: es un arreglo -->
+          <field name="domain">[("tipo","=","G")]</field>
+      </record>
       <!-- 4° : Cree este menu como menu principal, para hacerlo mas amigable sera el padre por tanto no tendra action-->
       <menuitem id="saldoapp.menu_principal_saldoapp" name="Saldo App" parent=""/>
       <!-- 3° : Cree el menu para el action (Con solo este menuitem sale sin el menu lateral izquierdo (parent vacio)) -->
-      <menuitem id="saldoapp.menu_movimiento" name="Movimiento" parent="saldoapp.menu_principal_saldoapp" action="saldoapp.action_movimiento"/>
+      <menuitem id="saldoapp.menu_movimiento" name="Movimiento" parent="saldoapp.menu_principal_saldoapp" action=""/>
 
-    <!--
+      <!-- 7° : Cree el menu para ingresos y quito el action de "saldoapp.menu_movimiento" xq los nuevos menus se encargaran -->
+      <menuitem id="saldoapp.menu_movimiento_ingreso" name="Ingresos" parent="saldoapp.menu_movimiento" action="saldoapp.action_movimiento_ingreso"/>
+      <!-- 8° : Cree el menu para gastos -->
+      <menuitem id="saldoapp.menu_movimiento_gasto" name="Gastos" parent="saldoapp.menu_movimiento" action="saldoapp.action_movimiento_gasto"/>
+
+      <!--
     <record model="ir.ui.view" id="extra-addons/saldoapp.list">
       <field name="name">extra-addons/saldoapp list</field>
       <field name="model">extra-addons/saldoapp.extra-addons/saldoapp</field>
