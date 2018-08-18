@@ -5,11 +5,12 @@
           <field name="name">view.tree.movimiento</field>
           <field name="model">sa.movimiento</field>
           <field name="arch" type="xml">
-              <tree>
+              <tree editable="top">
                   <field name="name"/>
                   <field name="monto"/>
                   <field name="tipo"/>
                   <field name="fecha"/>
+                  <field name="create_uid"></field>
               </tree>
           </field>
       </record>
@@ -70,9 +71,9 @@
       <menuitem id="saldoapp.menu_movimiento" name="Movimiento" parent="saldoapp.menu_principal_saldoapp" action=""/>
 
       <!-- 7° : Cree el menu para ingresos y quito el action de "saldoapp.menu_movimiento" xq los nuevos menus se encargaran -->
-      <menuitem id="saldoapp.menu_movimiento_ingreso" name="Ingresos" parent="saldoapp.menu_movimiento" action="saldoapp.action_movimiento_ingreso"/>
+      <menuitem id="saldoapp.menu_movimiento_ingreso" sequence="10" name="Ingresos" parent="saldoapp.menu_movimiento" action="saldoapp.action_movimiento_ingreso"/>
       <!-- 8° : Cree el menu para gastos -->
-      <menuitem id="saldoapp.menu_movimiento_gasto" name="Gastos" parent="saldoapp.menu_movimiento" action="saldoapp.action_movimiento_gasto"/>
+      <menuitem id="saldoapp.menu_movimiento_gasto" sequence="5" name="Gastos" parent="saldoapp.menu_movimiento" action="saldoapp.action_movimiento_gasto"/>
 
       <!--
     <record model="ir.ui.view" id="extra-addons/saldoapp.list">
