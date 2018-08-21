@@ -11,3 +11,5 @@ class LibraryBook(models.Model):
     pages = fields.Integer(string="# Pages")
     isbn = fields.Char(string="ISBN", size=13)
     description = fields.Html(string="Description")
+    # Relacion con categoria
+    category_id = fields.Many2one("library.category", string="Category")

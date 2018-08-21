@@ -13,6 +13,7 @@
                         <field name="active"></field>
                         <field name="pages"></field>
                         <field name="isbn"></field>
+                        <field name="category_id"></field>
                     </group>
                     <group>
                         <field name="description"></field>
@@ -35,12 +36,49 @@
         </field>
     </record>
 
+    <record id="library_book_kanban_view" model="ir.ui.view">
+        <field name="name">library.book.kanban.view</field>
+        <field name="model">library.book</field>
+        <field name="arch" type="xml">
+            <kanban create="false">
+                <field name="image"/>
+                <field name="name"/>
+                <field name="active"/>
+                <field name="isbn"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_module_vignette oe_kanban_global_click">
+                            <!--<t t-set="Activo" t-value="record.active.raw_value == '1'"/>-->
+                            <img t-attf-src="#{record.image.value}" class="oe_module_icon"/>
+                            <div class="oe_module_desc" t-att-tittle="record.name.value">
+                                <h4 class="o_kanban_record_title"><field name="name"/></h4>
+                                <p class="oe_module_name">
+                                    <t t-if="record.description.raw_value"><field name="description"/><br/></t>
+                                </p>
+                            </div>
+                            <!--<t t-esc="record.name.raw_value"/>-->
+                            <!--<field name="image" widget="image"/>-->
+                        </div>
+                        <!--<div class="oe_kanban_content">
+                            <span t-field="record.image.raw_value" widget="image"></span>
+                            <div class="row">
+
+                                &lt;!&ndash;<img t-att-src="kanban_image('library.book', 'image', record.image.raw_value)" class="oe_kanban_picture" style="max-height: 90px; max-width: 60px;"></img>&ndash;&gt;
+                                <t t-esc="record.name.raw_value"/>
+                            </div>
+                        </div>-->
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
     <!-- Action book -->
     <record id="action_library_book" model="ir.actions.act_window">
-        <field name="name">Book</field>
+        <field name="name">action.library.book</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">library.book</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">tree,form,kanban</field>
     </record>
 
     <!-- Menus -->
